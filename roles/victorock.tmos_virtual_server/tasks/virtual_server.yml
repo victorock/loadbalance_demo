@@ -1,0 +1,16 @@
+- name: "virtual_server: Ensure state of VirtualServer"
+  vars:
+    bigip_virtual_server: "{{ bigip_virtual_server_dict.value }}"
+  bigip_virtual_server:
+    server: "{{ ansible_host | default(omit) }}"
+    server_port: "{{ ansible_httpapi_port | default(omit) }}"
+    partition: "{{ bigip_virtual_server.partition | default(omit) }}"
+    name: "{{ bigip_virtual_server.name }}"
+    destination: "{{ bigip_virtual_server.destination | ipaddr('address') }}"
+    port: "{{ bigip_virtual_server.port }}"
+    snat: "{{ bigip_virtual_server.snat | default('Automap') }}"
+    state: "{{ bigip_virtual_server.state | default(omit) }}"
+
+- include_tasks: virtual_server.pools.yml
+  vars:
+    bigip_virtual_server: "{{ bigip_virtual_server_dict.value }}"

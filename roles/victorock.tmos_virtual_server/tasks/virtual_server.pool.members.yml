@@ -1,0 +1,4 @@
+- include_tasks: virtual_server.pool.member.yml
+  loop: "{{ bigip_pool.members | default([]) }}"
+  loop_control:
+    loop_var: bigip_member

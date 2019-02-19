@@ -1,0 +1,7 @@
+---
+provider:
+  server: "{{ lookup('env', 'F5_SERVER') | default(ansible_host) }}"
+  server_port: "{{ lookup('env', 'F5_SERVER_PORT') | default('443') }}"
+  user: "{{ lookup('env', 'F5_USER') | default(ansible_user)}}"
+  password: "{{ lookup('env', 'F5_PASSWORD') | default(ansible_password) }}"
+  validate_certs: "{{ lookup('env', 'F5_VALIDATE_CERTS') | default(False) }}"

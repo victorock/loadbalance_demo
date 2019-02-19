@@ -1,0 +1,21 @@
+---
+- name: "Collect F5: Facts"
+  hosts: tmos
+  connection: local
+  gather_facts: no
+  roles:
+    - role: f5devcentral.f5ansible
+
+  tasks:
+    - name: Gather BIG-IP facts
+      bigip_device_facts:
+        server: "{{ ansible_host | default(omit) }}"
+        server_port: "{{ ansible_httpapi_port | default(omit) }}"
+        gather_subset:
+          - all
+      register: bigip_device_facts
+
+    - name: Debug bigip_device_facts
+      debug:
+        var: bigip_device_facts
+        verbosity: 2

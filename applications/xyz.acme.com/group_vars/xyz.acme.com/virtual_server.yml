@@ -1,0 +1,50 @@
+---
+virtual_server:
+  api.xyz.acme.com-8081:
+    name: api.xyz.acme.com-8081
+    partition: "AppX"
+    destination: 10.132.0.3
+    port: 8081
+    snat: automap
+    state: present
+    pools:
+      - name: api.xyz.acme.com-pool
+        port: 80
+        state: present
+        members:
+          - name: api01.xyz.acme.com
+            address: 10.132.0.10
+            port: 80
+            state: present
+  auth.xyz.acme.com-8082:
+    name: auth.xyz.acme.com-8082
+    partition: "AppX"
+    destination: 10.132.0.3
+    port: 8082
+    snat: automap
+    state: present
+    pools:
+      - name: auth.xyz.acme.com-pool
+        port: 80
+        state: present
+        members:
+          - name: auth01.xyz.acme.com
+            address: 10.132.0.11
+            port: 80
+            state: present
+  static.xyz.acme.com-8083:
+    name: static.xyz.acme.com-8083
+    partition: "AppX"
+    destination: 10.132.0.3
+    port: 8083
+    snat: automap
+    state: present
+    pools:
+      - name: static.xyz.acme.com-pool
+        port: 80
+        state: present
+        members:
+          - name: static01.xyz.acme.com
+            address: 10.132.0.12
+            port: 80
+            state: present

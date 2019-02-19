@@ -1,0 +1,2 @@
+---
+bigip_virtual_server: "{{ virtual_server | default({}) }}"

@@ -1,0 +1,10 @@
+- name: "virtual_server.pool.member: Ensure association between member and pool"
+  bigip_pool_member:
+    server: "{{ ansible_host | default(omit) }}"
+    server_port: "{{ ansible_httpapi_port | default(omit) }}"
+    partition: "{{ bigip_virtual_server.partition | default(omit) }}"
+    pool: "{{ bigip_pool.name }}"
+    name: "{{ bigip_member.name | default(omit) }}"
+    address: "{{ bigip_member.address }}"
+    port: "{{ bigip_member.port }}"
+    state: "{{ bigip_member.state | default(omit) }}"
