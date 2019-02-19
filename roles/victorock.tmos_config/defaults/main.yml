@@ -1,0 +1,4 @@
+---
+tmos_config_backup_destination_folder: "/var/tmp"
+tmos_config_backup_destination_file: "ansible-backup.ucs"
+tmos_config_backup_destination_path: "{{ tmos_config_backup_destination_folder }}/{{ tmos_config_backup_destination_file }}"
